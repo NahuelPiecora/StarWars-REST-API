@@ -17,3 +17,20 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+
+class People(db.Model):
+    _tablename_ = 'people'
+    id = column(Integer, primary_key=True)
+    name = column(String)
+    haircolor = column(String)
+    eyecolor = column(String)
+
+    def __repr__(self):
+        return '<People %r>' % self.name
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "haircolor": self.haircolor,
+            "eyecolor": self.eyecolor,}

@@ -30,9 +30,46 @@ def handle_invalid_usage(error):
 def sitemap():
     return generate_sitemap(app)
 
-@app.route('/user', methods=['GET'])
+@app.route('/peole', methods=['GET'])
 def handle_hello():
+    return None
 
+@app.route('/peole/<int:people_id>', methods=['GET'])
+def handle_hello():
+    return None
+
+@app.route('/planets', methods=['GET'])
+def handle_hello():
+    return None
+
+@app.route('/planets/<int:planet_id>', methods=['GET'])
+def handle_hello():
+    return None
+
+
+@app.route('/users', methods=['GET'])
+def handle_hello():
+    return None
+
+@app.route('/users/favorites', methods=['GET'])
+def handle_hello():
+    return None
+
+@app.route('/favorite/planet/<int:planet_id>', methods=['POST'])
+def handle_hello():
+    return None
+
+@app.route('/favorite/people/<int:planet_id>', methods=['POST'])
+def handle_hello():
+    return None
+
+@app.route('/favorite/planet/<int:planet_id>', methods=['DELETE'])
+def handle_hello():
+    return None
+
+@app.route('/favorite/people/<int:people_id>', methods=['DELETE'])
+def handle_hello():
+    return None
     response_body = {
         "msg": "Hello, this is your GET /user response "
     }
