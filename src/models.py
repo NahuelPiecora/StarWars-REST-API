@@ -34,3 +34,41 @@ class People(db.Model):
             "name": self.name,
             "haircolor": self.haircolor,
             "eyecolor": self.eyecolor,}
+
+class Planet(Base):
+    __tablename__ = 'planet'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    climate = Column(String)
+    terain = Column(String)
+
+    def __repr__(self):
+        return '<Planet %r>' % self.name
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "climate": self.climate,
+            "terain": self.terain,}
+
+class Favorites(Base):
+    __tablename__ = "favorite"
+    id = Column(Integer, primary_key=True)
+    character = relationship(Character)
+    character_id = Column(Integer, ForeignKey("character.id"), nullable=True)
+    planet = relationship(Planet)
+    planet_id = Column(Integer, ForeignKey('planet.id'), nullable=True)
+    user = relationship(User)
+    user_id = Column(Integer, ForeignKey("user.id"))
+
+    def __repr__(self):
+        return '<Favorites %r>' % self.name
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "character": self.character,
+            "planet": self.climate,
+            }
+        
