@@ -50,13 +50,7 @@ def get_all_character():
     all_character = list(map(lambda x: x.serialize(), character))
     return jsonify(all_character), 200
 
-# @app.route('/user/favorites', methods=['GET'])
-# def get_user_favorites():
-#     favoriteplanet = FavoritePlanet.query.all()
-#     favoritecharacter = FavoriteCharacter.query.all()
-#     all_favorite_planet = list(map(lambda x: x.serialize(), favoriteplanet))
-#     all_favorite_character = list(map(lambda x: x.serialize(), favoritecharacter))
-#     return jsonify(all_favorite_planet+all_favorite_character), 200
+
 
 
 #---------------------------------------------------#
@@ -82,6 +76,35 @@ def create_user():
     db.session.add(new_user)
     db.session.commit()
     return jsonify(request_body_user), 200
+
+@app.route('/character', methods = ['POST'])
+def create_characterPost():
+    request_body_user = request.get_json()
+    add_character = Character(homeworld=request_body_user["homeworld"], name=request_body_user["name"], skill=request_body_user["skill"])
+    db.session.add(add_character)
+    db.session.commit()
+    return "successfully added!", 200
+
+@app.route('/planet', methods = ['POST'])
+def create_planetPost():
+    request_body_user = request.get_json()
+    add_planet = Planet(population=request_body_user["population"], name=request_body_user["name"], diameter=request_body_user["diameter"], climate=request_body_user["climate"])
+    db.session.add(add_planet)
+    db.session.commit()
+    return "successfully added!", 200
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # @app.route('/user/favoriteplanet', methods=['POST'])
 # def create_favorite_planet():
